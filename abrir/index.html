@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Abrir en Vulcano</title>
+<style>
+:root{color-scheme:light dark;--bg:#f6f6f4;--card:#fff;--fg:#1b1b1b;--muted:#6b6b6b;--line:#dcdcd8;--brand:#0f9d58}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--card:#1c1c1c;--fg:#ececec;--muted:#9a9a9a;--line:#2e2e2e;--brand:#22c55e}}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:16px;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center}
+.logo{font-weight:800;font-size:22px;margin-bottom:12px}.logo b{color:var(--brand)}
+h1{font-size:17px;margin:0 0 6px}p{margin:0 0 14px;color:var(--muted);font-size:13px}
+a.btn{display:block;padding:10px;border-radius:9px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600}
+#ayuda{display:none;margin-top:16px;text-align:left;border-top:1px solid var(--line);padding-top:14px}
+#ayuda a{color:var(--brand)}.err{color:#c62828}
+</style></head><body><main>
+<div class="logo"><b>V</b>ulcano</div>
+<h1 id="t">Abriendo el diseño en Vulcano…</h1>
+<p id="s">Si el navegador te pregunta, elige «Abrir Vulcano».</p>
+<a class="btn" id="b" href="#">Abrir en Vulcano</a>
+<div id="ayuda"><p>¿No se abrió? Hace falta tener Vulcano instalado en esta computadora y ser parte del equipo.
+También puedes abrirlo en Vulcano › Magma › Importar.</p>
+<p><a href="https://github.com/ImperiumTechAI/Vulcano/releases/latest">Descargar Vulcano</a></p></div>
+</main><script>
+(function(){
+var p=location.hash.replace(/^#/,'').split('/').filter(Boolean);
+if(p.length!==3||!/^[A-Za-z0-9][A-Za-z0-9-]{0,38}$/.test(p[0])||!/^vulcano-magma(-equipo)?$/.test(p[1])
+  ||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(p[2])){
+  document.getElementById('t').textContent='Este enlace está incompleto';
+  document.getElementById('s').innerHTML='<span class="err">Pide que te lo vuelvan a copiar desde Vulcano.</span>';
+  document.getElementById('b').style.display='none';return}
+var url='vulcano://magma/compartido/'+p.join('/'),b=document.getElementById('b');
+b.href=url;location.href=url;
+setTimeout(function(){document.getElementById('ayuda').style.display='block'},2500);
+})();
+</script></body></html>
